@@ -1,0 +1,925 @@
+﻿Program.Sub.ScreenSU.Start
+Gui.FormMain..Create(BaseForm)
+Gui.FormMain..Caption("Employee Performance Report")
+Gui.FormMain..Size(311,256)
+Gui.FormMain..MinX(0)
+Gui.FormMain..MinY(0)
+Gui.FormMain..Position(0,0)
+Gui.FormMain..AlwaysOnTop(False)
+Gui.FormMain..FontName("Tahoma")
+Gui.FormMain..FontSize(8.25)
+Gui.FormMain..ControlBox(True)
+Gui.FormMain..MaxButton(True)
+Gui.FormMain..MinButton(True)
+Gui.FormMain..MousePointer(0)
+Gui.FormMain..Moveable(True)
+Gui.FormMain..Sizeable(True)
+Gui.FormMain..ShowInTaskBar(True)
+Gui.FormMain..TitleBar(True)
+Gui.FormMain..Event(UnLoad,FormMain_UnLoad)
+Gui.FormMain.dtpFrom.Create(DatePicker)
+Gui.FormMain.dtpFrom.Enabled(True)
+Gui.FormMain.dtpFrom.Visible(True)
+Gui.FormMain.dtpFrom.Zorder(0)
+Gui.FormMain.dtpFrom.Size(100,20)
+Gui.FormMain.dtpFrom.Position(21,38)
+Gui.FormMain.dtpFrom.CheckBox(False)
+Gui.FormMain.dtpFrom.FontName("Tahoma")
+Gui.FormMain.dtpFrom.FontSize(8.25)
+Gui.FormMain.dtpFrom.Anchor(15)
+Gui.FormMain.lbl1.Create(Label,"From Date:",True,54,13,0,23,22,True,0,"Tahoma",8.25,,0,0)
+Gui.FormMain.lbl1.BorderStyle(0)
+Gui.FormMain.lbl1.Anchor(15)
+Gui.FormMain.lbl2.Create(Label,"To Date:",True,42,13,0,158,21,True,0,"Tahoma",8.25,,0,0)
+Gui.FormMain.lbl2.BorderStyle(0)
+Gui.FormMain.lbl2.Anchor(15)
+Gui.FormMain.dtpTo.Create(DatePicker)
+Gui.FormMain.dtpTo.Enabled(True)
+Gui.FormMain.dtpTo.Visible(True)
+Gui.FormMain.dtpTo.Zorder(0)
+Gui.FormMain.dtpTo.Size(100,20)
+Gui.FormMain.dtpTo.Position(156,38)
+Gui.FormMain.dtpTo.CheckBox(False)
+Gui.FormMain.dtpTo.FontName("Tahoma")
+Gui.FormMain.dtpTo.FontSize(8.25)
+Gui.FormMain.dtpTo.Anchor(15)
+Gui.FormMain.chkPrintTotal.Create(CheckBox)
+Gui.FormMain.chkPrintTotal.Enabled(True)
+Gui.FormMain.chkPrintTotal.Visible(True)
+Gui.FormMain.chkPrintTotal.Zorder(0)
+Gui.FormMain.chkPrintTotal.Size(171,20)
+Gui.FormMain.chkPrintTotal.Position(21,128)
+Gui.FormMain.chkPrintTotal.Caption("Also Print Plant Total Report")
+Gui.FormMain.chkPrintTotal.FontName("Tahoma")
+Gui.FormMain.chkPrintTotal.FontSize(8.25)
+Gui.FormMain.chkPrintTotal.Event(MouseUp,chkPrintTotal_MouseUp)
+Gui.FormMain.chkPrintTotal.Anchor(15)
+Gui.FormMain.chkAllEmp.Create(CheckBox)
+Gui.FormMain.chkAllEmp.Enabled(True)
+Gui.FormMain.chkAllEmp.Visible(True)
+Gui.FormMain.chkAllEmp.Zorder(0)
+Gui.FormMain.chkAllEmp.Size(108,20)
+Gui.FormMain.chkAllEmp.Position(22,85)
+Gui.FormMain.chkAllEmp.Caption("All Employees")
+Gui.FormMain.chkAllEmp.FontName("Tahoma")
+Gui.FormMain.chkAllEmp.FontSize(8.25)
+Gui.FormMain.chkAllEmp.Event(MouseUp,chkAllEmp_MouseUp)
+Gui.FormMain.chkAllEmp.Value(1)
+Gui.FormMain.chkAllEmp.Anchor(15)
+Gui.FormMain.cmdSelectEmployee.Create(Button)
+Gui.FormMain.cmdSelectEmployee.Enabled(False)
+Gui.FormMain.cmdSelectEmployee.Visible(True)
+Gui.FormMain.cmdSelectEmployee.Zorder(0)
+Gui.FormMain.cmdSelectEmployee.Size(109,23)
+Gui.FormMain.cmdSelectEmployee.Position(147,82)
+Gui.FormMain.cmdSelectEmployee.Caption("Select Employees")
+Gui.FormMain.cmdSelectEmployee.FontName("Tahoma")
+Gui.FormMain.cmdSelectEmployee.FontSize(8.25)
+Gui.FormMain.cmdSelectEmployee.Event(Click,cmdSelectEmployee_Click)
+Gui.FormMain.cmdSelectEmployee.Anchor(15)
+Gui.FormMain.cmdGenerate.Create(Button)
+Gui.FormMain.cmdGenerate.Enabled(True)
+Gui.FormMain.cmdGenerate.Visible(True)
+Gui.FormMain.cmdGenerate.Zorder(0)
+Gui.FormMain.cmdGenerate.Size(75,23)
+Gui.FormMain.cmdGenerate.Position(96,176)
+Gui.FormMain.cmdGenerate.Caption("Generate")
+Gui.FormMain.cmdGenerate.FontName("Tahoma")
+Gui.FormMain.cmdGenerate.FontSize(8.25)
+Gui.FormMain.cmdGenerate.Event(Click,cmdGenerate_Click)
+Gui.FormMain.cmdGenerate.Anchor(15)
+Gui.FormEmp..Create(BaseForm)
+Gui.FormEmp..Caption("Select Employees")
+Gui.FormEmp..Size(521,665)
+Gui.FormEmp..MinX(0)
+Gui.FormEmp..MinY(0)
+Gui.FormEmp..Position(0,0)
+Gui.FormEmp..AlwaysOnTop(False)
+Gui.FormEmp..FontName("Tahoma")
+Gui.FormEmp..FontSize(8.25)
+Gui.FormEmp..ControlBox(True)
+Gui.FormEmp..MaxButton(True)
+Gui.FormEmp..MinButton(True)
+Gui.FormEmp..MousePointer(0)
+Gui.FormEmp..Moveable(True)
+Gui.FormEmp..Sizeable(True)
+Gui.FormEmp..ShowInTaskBar(True)
+Gui.FormEmp..TitleBar(True)
+Gui.FormEmp..Event(UnLoad,FormEmp_UnLoad)
+Gui.FormEmp.cmdEmp_OK.Create(Button)
+Gui.FormEmp.cmdEmp_OK.Enabled(True)
+Gui.FormEmp.cmdEmp_OK.Visible(True)
+Gui.FormEmp.cmdEmp_OK.Zorder(0)
+Gui.FormEmp.cmdEmp_OK.Size(75,23)
+Gui.FormEmp.cmdEmp_OK.Position(231,600)
+Gui.FormEmp.cmdEmp_OK.Caption("OK")
+Gui.FormEmp.cmdEmp_OK.FontName("Tahoma")
+Gui.FormEmp.cmdEmp_OK.FontSize(8.25)
+Gui.FormEmp.cmdEmp_OK.Event(Click,cmdEmp_OK_Click)
+Gui.FormEmp.GsgcEmp.Create(GsGridControl)
+Gui.FormEmp.GsgcEmp.Enabled(True)
+Gui.FormEmp.GsgcEmp.Visible(True)
+Gui.FormEmp.GsgcEmp.Zorder(0)
+Gui.FormEmp.GsgcEmp.Size(509,578)
+Gui.FormEmp.GsgcEmp.Position(7,9)
+Gui.FormEmp.GsgcEmp.Event(RowCellClick,GsgcEmp_RowCellClick)
+Gui.FormEmp.GsgcEmp.Anchor(13)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+v.Global.bAllEmp.Declare(Boolean, True)
+v.Global.bPrintTotal.Declare(Boolean, False)
+v.Global.bFB.Declare(Boolean, True)
+Program.Sub.Preflight.End
+
+'ARC 6941
+'Cus: E & M Cooper Products
+'	Oct 2022, Nam Le
+
+
+'The customer is looking to provide a Performance Report Card to each of their employees that provides a breakdown of their performance in Labor, Productivity, Number of NCMRs and Indirect work orders.  While they can find each of these metrics in separate reports, they would like to consolidate this information in a single place for ease of distribution.
+Program.Sub.Main.Start
+Function.Intrinsic.UI.UsePixels ' Allows you to use Pixels instead of Twips throughout
+'gui.FormMain..Visible(True)
+gui.FormMain..Show
+Program.Sub.Main.End
+
+Program.Sub.FormMain_UnLoad.Start
+f.Intrinsic.Control.End
+Program.Sub.FormMain_UnLoad.End
+
+'Generate
+Program.Sub.cmdGenerate_Click.Start
+f.Intrinsic.Control.Try
+	v.Local.sFilePath.Declare(String)
+	
+	'validation
+	'-------------------------------------
+	f.Intrinsic.Control.If(v.Screen.FormMain!dtpFrom.Value,=,"", "OR", v.Screen.FormMain!dtpTo.Value,=,"")
+		f.Intrinsic.UI.Msgbox("Please Select a From Date and a To Date", "Cannot Generate Report")	
+		f.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.EndIf
+	'-------------------------------------
+	
+
+	
+	
+	'if all Emp is checked => get all Emp
+	'	if not, get list of selected
+	f.Intrinsic.Control.If(v.Global.bAllEmp,=,False)
+		f.Intrinsic.Control.If(v.DataTable.dtEmp.Exists,=,False)
+			f.Intrinsic.UI.Msgbox("No Employee is Selected.", "Cannot Generate Report")
+			f.Intrinsic.Control.ExitSub
+		f.Intrinsic.Control.Else
+			'get selected
+			f.Data.DataView.Create("dtEmp", "dvEmpSelected", 22, "SELECT=1", "")
+			f.Intrinsic.Control.If(v.DataTable.dtEmpSelected.Exists)
+				f.Data.DataTable.Close("dtEmpSelected")
+			f.Intrinsic.Control.EndIf
+			f.Data.DataView.ToDataTable("dtEmp", "dvEmpSelected", "dtEmpSelected", True)
+			f.Data.DataView.Close("dtEmp", "dvEmpSelected")
+			
+			f.Intrinsic.Control.If(v.DataTable.dtEmpSelected.RowCount,=,0)
+				f.Intrinsic.UI.Msgbox("No Employee is Selected.", "Cannot Generate Report")
+				f.Intrinsic.Control.ExitSub
+			
+			'happy path
+			f.Intrinsic.Control.Else
+				gui.FormMain..Enabled(False)
+				f.Intrinsic.UI.InvokeWaitDialog("Please Wait...","Generating Report...")
+				f.Intrinsic.Control.CallSub(GenerateReport)
+			f.Intrinsic.Control.EndIf
+		f.Intrinsic.Control.EndIf
+	
+	
+	'all employees
+	f.Intrinsic.Control.Else
+	
+		f.Intrinsic.Control.If(v.DataTable.dtEmp.Exists,=,False)
+			f.ODBC.Connection!Con.OpenCompanyConnection(999)
+				f.Data.DataTable.CreateFromSQL("dtEmp", "con", "select RTRIM(EMPLOYEE) ID, RTRIM(NAME) NAME from EMPLOYEE_MSTR order by EMPLOYEE", True)
+				f.Data.DataTable.AddColumn("dtEmp", "SELECT", "Boolean", False)
+			f.ODBC.Connection!Con.Close
+		f.Intrinsic.Control.EndIf
+	
+		f.Intrinsic.Control.If(v.DataTable.dtEmpSelected.Exists)
+				f.Data.DataTable.Close("dtEmpSelected")
+			f.Intrinsic.Control.EndIf
+		f.Data.DataView.Create("dtEmp", "dvEmpSelected", 22)
+		f.Data.DataView.ToDataTable("dtEmp", "dvEmpSelected", "dtEmpSelected", True)
+		f.Data.DataView.Close("dtEmp", "dvEmpSelected")
+		
+		gui.FormMain..Enabled(False)
+		f.Intrinsic.UI.InvokeWaitDialog("Please Wait...","Generating Report")
+		f.Intrinsic.Control.CallSub(GenerateReport)
+	f.Intrinsic.Control.EndIf
+	
+	
+	'if "Also Print Plant Total Report" 
+'	f.Intrinsic.Control.If(v.Global.bPrintTotal,=,True)
+'		'print Plant Total
+'		
+'	f.Intrinsic.Control.EndIf
+	
+	f.Intrinsic.UI.Msgbox("Print Completed.")
+	
+	'open folder
+	f.Intrinsic.String.Build("{0}\{1}\{2}",v.Caller.GlobalDir, "CUSTOM\6941\", v.Caller.CompanyCode, v.Local.sFilePath)
+	F.Intrinsic.Task.ShellExec(0,"",V.Local.sFilePath,"","",1)
+	
+	f.Intrinsic.Control.CallSub(FormMain_UnLoad)
+	
+f.Intrinsic.Control.Catch
+	f.Intrinsic.Control.CallSub(catching)
+	f.Intrinsic.Control.CallSub(FormMain_UnLoad)
+f.Intrinsic.Control.EndTry
+Program.Sub.cmdGenerate_Click.End
+
+
+'Generate Report
+'All selected employee will be saved in dtEmpSelected, the sub will loop through each ID and generate the reports
+Program.Sub.GenerateReport.Start
+f.Intrinsic.Control.Try
+	v.Local.iCount.Declare(Long)
+	v.Local.sEmpID.Declare(String)
+	v.Local.sDateFrom.Declare(String)
+	v.Local.sDateTo.Declare(String)
+	v.Local.sSQL.Declare(String)
+	v.Local.sRet.Declare(String)
+	v.Local.iCountBreakdown.Declare(Long)
+	
+	
+	'for each emp
+	'	find hours for them in the period 
+	'		calculate
+	'		write to BI tables
+	'			export report to folder
+	'	
+	'	if error happens, move to the next EMPID
+	f.Intrinsic.Control.For(v.Local.iCount,0,v.DataTable.dtEmpSelected.RowCount--,1)
+		v.Local.sEmpID.Set(v.DataTable.dtEmpSelected(v.Local.iCount).ID!FieldValTrim)
+		f.Intrinsic.Control.CallSub(GenerateReportForAnEmployee, "argEmpID", v.Local.sEmpID)
+	f.Intrinsic.Control.Next(v.Local.iCount)
+	
+	
+	
+	'if Plant total is checked, print Total Report
+	f.Intrinsic.Control.If(v.Global.bPrintTotal)
+		f.Intrinsic.Control.CallSub(PrintTotalReport)
+	f.Intrinsic.Control.EndIf
+	
+f.Intrinsic.Control.Catch
+	f.Intrinsic.Control.CallSub(catching)
+f.Intrinsic.Control.EndTry
+Program.Sub.GenerateReport.End
+
+
+'generate report for given EmpID
+'arg: argEmpID
+Program.Sub.GenerateReportForAnEmployee.Start
+f.Intrinsic.Control.Try
+	v.Local.iCount.Declare(Long)
+	v.Local.sEmpID.Declare(String)
+	v.Local.sEmpName.Declare(String)
+	v.Local.sDateFrom.Declare(String)
+	v.Local.sDateTo.Declare(String)
+	v.Local.sSQL.Declare(String)
+	v.Local.sRet.Declare(String)
+	
+	v.Local.fActualHours.Declare(Float)
+	v.Local.fEstimateHours.Declare(Float)
+	v.Local.fIndirectHours.Declare(Float)
+	v.Local.fDirectHours.Declare(Float)
+	v.Local.fPerformance.Declare(Float)
+	v.Local.fNCR_01.Declare(Long)
+	v.Local.fNCR_10.Declare(Long)
+	v.Local.fNCR_07.Declare(Long)
+	v.Local.fNCR_09.Declare(Long)
+	v.Local.fNCR_01_Qty.Declare(Long)
+	v.Local.fNCR_07_Qty.Declare(Long)
+	v.Local.fNCR_09_Qty.Declare(Long)
+	v.Local.fNCR_10_Qty.Declare(Long)
+	
+	v.Local.sFilePath.Declare(String)
+	v.Local.sFile.Declare(String)
+	V.Local.iBIRunID.Declare(Long)
+	V.Local.iLogID.Declare(Long)
+	v.Local.sReportID.Declare(String)
+	v.Local.bFilePathExist.Declare(Boolean)
+	V.Local.iRet.Declare(Long)
+	
+	v.Local.sBreakdown.Declare(String)
+	
+	v.Local.sDateFromYYMMDD.Declare(String)
+	v.Local.sDateToYYMMDD.Declare(String)
+		'find total worked hours
+		'	total hours work on direct
+		'	total hours work on indirect
+		'	total hours estimated
+		'	breakdowns on indirect
+		'	scrap counts per scrap code
+	f.Intrinsic.String.Format(v.Screen.FormMain!dtpFrom.Value, "YYYY-MM-DD", v.Local.sDateFrom)
+	f.Intrinsic.String.Format(V.Screen.FormMain!dtpTo.Value,"YYYY-MM-DD", V.Local.sDateTo)
+		f.Intrinsic.String.Format(v.Screen.FormMain!dtpFrom.Value, "YYMMDD", v.Local.sDateFromYYMMDD)
+	f.Intrinsic.String.Format(V.Screen.FormMain!dtpTo.Value,"YYMMDD", v.Local.sDateToYYMMDD)
+	v.Local.sEmpID.Set(v.Args.argEMPID)
+	
+	f.ODBC.Connection!Con.OpenCompanyConnection(999)
+		'Delete previous records by GSUSER
+		'-----------------------------------------------------
+		f.Intrinsic.String.Build("delete from GCG_6941_BREAKDOWN where RTRIM(GSUSER)='{0}'", v.Caller.User, v.Local.sSQL)
+		f.Intrinsic.String.Build("delete from GCG_6941_BREAKDOWN", v.Caller.User, v.Local.sSQL)
+		f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+		f.Intrinsic.String.Build("delete from GCG_6941_BI where RTRIM(GSUSER)='{0}'", v.Caller.User, v.Local.sSQL)
+		f.Intrinsic.String.Build("delete from GCG_6941_BI", v.Caller.User, v.Local.sSQL)
+		f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+		f.Intrinsic.String.Build("delete from GCG_6941_PERFORM where RTRIM(GSUSER)='{0}'", v.Caller.User, v.Local.sSQL)
+		f.Intrinsic.String.Build("delete from GCG_6941_PERFORM", v.Caller.User, v.Local.sSQL)
+		f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+		f.Intrinsic.String.Build("delete from GCG_6941_PROD where RTRIM(GSUSER)='{0}'", v.Caller.User, v.Local.sSQL)
+		f.Intrinsic.String.Build("delete from GCG_6941_PROD", v.Caller.User, v.Local.sSQL)
+		f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+		'-----------------------------------------------------
+		
+		'get numbers
+		'-----------------------------------------------------
+		'Total Actual
+		f.Intrinsic.String.Build("select SUM(HOURS_WORKED) from JOB_DETAIL where RTRIM(EMPL)='{0}' and DATE_SEQUENCE >= '{1}' and DATE_SEQUENCE <= '{2}'", v.Local.sEmpID, v.Local.sDateFromYYMMDD, v.Local.sDateToYYMMDD, v.Local.sSQL)
+		
+		
+		'select SUM(HOURS_WORKED) from JOB_DETAIL where DATE_SEQUENCE >= '221003' and DATE_SEQUENCE <= '221016' and EMPL <> '00000' and EMPL is not null;
+'		select JOB, SUFFIX, SEQ, HOURS_ESTIMATED from JOB_OPERATIONS where RTRIM(JOB)+'-'+RTRIM(SUFFIX)+'-'+RTRIM(SEQ) in (select RTRIM(A.JOB)+'-'+RTRIM(A.SUFFIX)+'-'+RTRIM(A.SEQ) from JOB_DETAIL A where RTRIM(A.EMPL)='03012' and A.DATE_SEQUENCE >= '221003' and A.DATE_SEQUENCE <= '221016' and LEFT(JOB,4) not in ('ZBAL','ZIND')) ;
+		
+		f.ODBC.Connection!Con.ExecuteAndReturn(v.Local.sSQL, v.Local.sRet)
+		f.Intrinsic.Control.If(v.Ambient.ExecuteAndReturnEOF,=,True)
+			v.Local.fActualHours.Set(0)
+		f.Intrinsic.Control.Else
+			v.Local.fActualHours.Set(v.Local.sRet)
+		f.Intrinsic.Control.EndIf
+		
+		'Total Estimate
+		'	from V_JOB_OPERATIONS
+		'	12/2022 - get calculated estimated from JOB_DETAIL.AMT_STANDARD
+		f.Intrinsic.String.Build("select SUM(HOURS_ESTIMATED) from JOB_OPERATIONS where RTRIM(JOB)+'-'+RTRIM(SUFFIX)+'-'+RTRIM(SEQ) in (select RTRIM(A.JOB)+'-'+RTRIM(A.SUFFIX)+'-'+RTRIM(A.SEQ) from JOB_DETAIL A where RTRIM(A.EMPL)='{0}' and A.DATE_SEQUENCE >= '{1}' and A.DATE_SEQUENCE <= '{2}')", v.Local.sEmpID, v.Local.sDateFromYYMMDD, v.Local.sDateToYYMMDD, v.Local.sSQL)
+		f.Intrinsic.String.Build("select SUM(AMT_STANDARD) from JOB_DETAIL where RTRIM(EMPL)='{0}' and DATE_SEQUENCE >= '{1}' and DATE_SEQUENCE <= '{2}'", v.Local.sEmpID, v.Local.sDateFromYYMMDD, v.Local.sDateToYYMMDD, v.Local.sSQL)
+		
+		f.ODBC.Connection!Con.ExecuteAndReturn(v.Local.sSQL, v.Local.sRet)
+		f.Intrinsic.Control.If(v.Ambient.ExecuteAndReturnEOF,=,True)
+			v.Local.fEstimateHours.Set(0)
+		f.Intrinsic.Control.Else
+			v.Local.fEstimateHours.Set(v.Local.sRet)
+		f.Intrinsic.Control.EndIf
+		
+		'Direct
+		f.Intrinsic.String.Build("select SUM(HOURS_WORKED) from JOB_DETAIL where RTRIM(EMPL)='{0}' and DATE_SEQUENCE >= '{1}' and DATE_SEQUENCE <= '{2}' and LEFT(JOB,4) not in ('ZBAL','ZIND')", v.Local.sEmpID, v.Local.sDateFromYYMMDD, v.Local.sDateToYYMMDD, v.Local.sSQL)
+		f.ODBC.Connection!Con.ExecuteAndReturn(v.Local.sSQL, v.Local.sRet)
+		f.Intrinsic.Control.If(v.Ambient.ExecuteAndReturnEOF,=,True)
+			v.Local.fDirectHours.Set(0)
+		f.Intrinsic.Control.Else
+			v.Local.fDirectHours.Set(v.Local.sRet)
+		f.Intrinsic.Control.EndIf
+		
+		'Indirect
+		f.Intrinsic.String.Build("select SUM(HOURS_WORKED) from JOB_DETAIL where RTRIM(EMPL)='{0}' and DATE_SEQUENCE >= '{1}' and DATE_SEQUENCE <= '{2}' and LEFT(JOB,4) in ('ZBAL','ZIND')", v.Local.sEmpID, v.Local.sDateFromYYMMDD, v.Local.sDateToYYMMDD, v.Local.sSQL)
+		f.ODBC.Connection!Con.ExecuteAndReturn(v.Local.sSQL, v.Local.sRet)
+		f.Intrinsic.Control.If(v.Ambient.ExecuteAndReturnEOF,=,True)
+			v.Local.fIndirectHours.Set(0)
+		f.Intrinsic.Control.Else
+			v.Local.fIndirectHours.Set(v.Local.sRet)
+		f.Intrinsic.Control.EndIf
+		
+		'breakdown on INDIRECT
+		'	runs when INDIRECT HOURS > 0
+		'		find and insert info into custom table GCG_6941_BREAKDOWN
+		f.Intrinsic.Control.If(v.Local.fIndirectHours,=,0)
+			'No Indirect
+			
+		f.Intrinsic.Control.Else
+'			f.Intrinsic.String.Build("select EMPL,RTRIM(B.DESCRIPTION) BREAKDOWN, SUM(A.HOURS_WORKED) HOURS from JOB_DETAIL A left join JOB_OPERATIONS B on A.JOB+A.SUFFIX+A.SEQ=B.JOB+B.SUFFIX+B.SEQ where RTRIM(EMPL)='{0}' and LEFT(A.JOB,4) in ('ZBAL','ZIND') and A.DATE_SEQUENCE >= '{1}' and A.DATE_SEQUENCE <= '{2}' group by BREAKDOWN,EMPL", v.Local.sEmpID, v.Local.sDateFromYYMMDD, v.Local.sDateToYYMMDD, v.Local.sSQL)
+			f.Intrinsic.String.Build("select EMPL, SUM(HOURS_WORKED) HOURS, JOB+'-'+SUFFIX+'-'+SEQ JSQ, '' BREAKDOWN from JOB_DETAIL where RTRIM(EMPL)='{0}' and LEFT(JOB,4) in ('ZBAL','ZIND') and DATE_SEQUENCE >= '{1}' and DATE_SEQUENCE <= '{2}' group by BREAKDOWN,EMPL, JSQ", v.Local.sEmpID, v.Local.sDateFromYYMMDD, v.Local.sDateToYYMMDD, v.Local.sSQL)
+			f.Intrinsic.Control.If(v.DataTable.dtBreakdown.Exists)
+				f.Data.DataTable.Close("dtBreakdown")
+			f.Intrinsic.Control.EndIf
+			f.Data.DataTable.CreateFromSQL("dtBreakdown", "con", v.Local.sSQL, True)
+			
+			'create dict and fill
+			f.Intrinsic.String.Build("select JOB+'-'+SUFFIX+'-'+SEQ JSQ, DESCRIPTION from JOB_OPERATIONS where JSQ in (select JOB+'-'+SUFFIX+'-'+SEQ JSQ from JOB_DETAIL where RTRIM(EMPL)='{0}' and LEFT(JOB,4) in ('ZBAL','ZIND') and DATE_SEQUENCE >= '{1}' and DATE_SEQUENCE <= '{2}' group by JSQ, DESCRIPTION)", v.Local.sEmpID, v.Local.sDateFromYYMMDD, v.Local.sDateToYYMMDD, v.Local.sSQL)
+			f.Data.Dictionary.CreateFromSQL("dictBD", "con", v.Local.sSQL)
+			f.Data.Dictionary.SetDefaultReturn("dictBD", "")
+			f.Data.DataTable.FillFromDictionary("dtBreakdown", "dictBD", "JSQ", "BREAKDOWN")
+			f.Data.Dictionary.Close("dictBD")
+			
+			f.Intrinsic.Control.If(v.DataTable.dtBreakdown.RowCount,>,0)
+				f.Intrinsic.Control.For(v.Local.iCount,0,v.DataTable.dtBreakdown.RowCount--,1)
+					v.Local.sBreakdown.Set(v.DataTable.dtBreakdown(v.Local.iCount).BREAKDOWN!FieldValTrim)
+					f.Intrinsic.String.Build("insert into GCG_6941_BREAKDOWN (EMPID,BREAKDOWN,HOURS,GSUSER) values('{0}','{1}',{2},'{3}')", v.DataTable.dtBreakdown(v.Local.iCount).EMPL!FieldValTrim, v.Local.sBreakdown.PSQLFriendly, v.DataTable.dtBreakdown(v.Local.iCount).HOURS!FieldVal, v.Caller.User, v.Local.sSQL)
+					f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+				f.Intrinsic.Control.Next(v.Local.iCount)
+			f.Intrinsic.Control.EndIf
+		
+		f.Intrinsic.Control.EndIf
+		
+		
+		'	scrap counts per scrap code
+		'	count scrap occurence by scrap code by employee
+		'-----------------------------------------------------
+		f.Intrinsic.String.Build("select count(1) OCCURENCE, SUM(QTY_REJECTED) QTY, RTRIM(SCRAP_CODE) SCRAP_CODE from V_QUALITY where RTRIM(EMPLOYEE) = '{0}' and RTRIM(SCRAP_CODE) in ('1', '7', '9', '10')  and DATE_ENTERED >= '{1}' and DATE_ENTERED <= '{2}' group by SCRAP_CODE", v.Local.sEmpID, v.Local.sDateFrom, v.Local.sDateTo, v.Local.sSQL)
+		
+		'update Nov 4
+		'select DATE_ENTERED, SCRAP_CODE, EMPLOYEE, EMPLOYEE_NAME, EMPLOYEE_DEPT, QTY_REJECTED  from V_QUALITY where RTRIM(SCRAP_CODE) in ('1', '7', '9', '10')  and DATE_ENTERED >= '2022-10-03' and DATE_ENTERED <= '2022-10-23'
+		f.Intrinsic.Control.If(v.DataTable.dtScrap.Exists)
+			f.Data.DataTable.Close("dtScrap")
+		f.Intrinsic.Control.EndIf
+		f.Data.DataTable.CreateFromSQL("dtScrap", "con", v.Local.sSQL, True)
+		f.Intrinsic.Control.If(v.DataTable.dtScrap.RowCount,=,0)
+			'no scrap
+		f.Intrinsic.Control.Else
+			'loop to get data into vars
+			f.Intrinsic.Control.For(v.Local.iCount, 0, v.DataTable.dtScrap.RowCount--,1)
+				f.Intrinsic.Control.SelectCase(v.DataTable.dtScrap(v.Local.iCount).SCRAP_CODE!FieldValTrim)
+					f.Intrinsic.Control.Case("1")
+						v.Local.fNCR_01.Set(v.DataTable.dtScrap(v.Local.iCount).OCCURENCE!FieldVal)
+						v.Local.fNCR_01_Qty.Set(v.DataTable.dtScrap(v.Local.iCount).QTY!FieldVal)
+					f.Intrinsic.Control.Case("7")
+						v.Local.fNCR_07.Set(v.DataTable.dtScrap(v.Local.iCount).OCCURENCE!FieldVal)
+						v.Local.fNCR_07_Qty.Set(v.DataTable.dtScrap(v.Local.iCount).QTY!FieldVal)
+					f.Intrinsic.Control.Case("9")
+						v.Local.fNCR_09.Set(v.DataTable.dtScrap(v.Local.iCount).OCCURENCE!FieldVal)
+						v.Local.fNCR_09_Qty.Set(v.DataTable.dtScrap(v.Local.iCount).QTY!FieldVal)
+					f.Intrinsic.Control.Case("10")
+						v.Local.fNCR_10.Set(v.DataTable.dtScrap(v.Local.iCount).OCCURENCE!FieldVal)
+						v.Local.fNCR_10_Qty.Set(v.DataTable.dtScrap(v.Local.iCount).QTY!FieldVal)
+				f.Intrinsic.Control.EndSelect
+			f.Intrinsic.Control.Next(v.Local.iCount)
+		f.Intrinsic.Control.EndIf
+		'-----------------------------------------------------
+		
+		
+		'EMP NAME
+		f.Intrinsic.String.Build("select top 1 RTRIM(NAME) from V_EMPLOYEE_MSTR where RTRIM(EMPLOYEE)='{0}'", v.Local.sEmpID.PSQLFriendly, v.Local.sSQL)
+		f.ODBC.Connection!Con.ExecuteAndReturn(v.Local.sSQL, v.Local.sEmpName)
+		
+		'calculate Performance
+		'-----------------------------------------------------
+		f.Intrinsic.Control.If(v.Local.fDirectHours,>,0)
+			f.Intrinsic.Math.Div(v.Local.fEstimateHours,v.Local.fDirectHours, v.Local.fPerformance)
+			f.Intrinsic.Math.Mult(v.Local.fPerformance,100, v.Local.fPerformance)
+		f.Intrinsic.Control.Else
+			v.Local.fPerformance.Set(0)
+		f.Intrinsic.Control.EndIf
+		'-----------------------------------------------------
+		
+		
+		'write to BI tables
+		'-----------------------------------------------------
+		f.Intrinsic.String.Build("insert into GCG_6941_BI (EMPID,GSUSER,EST_ACTUAL,HOUR_TOTAL,HOUR_DIRECT,HOUR_INDIRECT,NCR_07,NCR_09,NCR_01,NCR_10,DATE_FROM,DATE_TO,EMP_NAME,NCR_07_QTY,NCR_09_QTY,NCR_01_QTY,NCR_10_QTY) values('{0}','{1}',{2},{3},{4},{5},{6},{7},{8},{9},'{10}','{11}','{12}','{13}','{14}','{15}','{16}')", v.Local.sEmpID, v.Caller.User, v.Local.fPerformance, v.Local.fActualHours,v.Local.fDirectHours, v.Local.fIndirectHours, v.Local.fNCR_07, v.Local.fNCR_09, v.Local.fNCR_01, v.Local.fNCR_10, v.Local.sDateFrom, v.Local.sDateTo, v.Local.sEmpName, v.Local.fNCR_07_Qty, v.Local.fNCR_09_Qty, v.Local.fNCR_01_Qty, v.Local.fNCR_10_Qty, v.Local.sSQL)
+		f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+		
+		'performance
+		f.Intrinsic.String.Build("insert into GCG_6941_PERFORM (EMPID,GSUSER,TYPE,PERCENT) values('{0}','{1}','ESTIMATED HRS',{2})", v.Local.sEmpID, v.Caller.User, v.Local.fEstimateHours, v.Local.sSQL)
+		f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+		f.Intrinsic.String.Build("insert into GCG_6941_PERFORM (EMPID,GSUSER,TYPE,PERCENT) values('{0}','{1}','ACTUAL HRS',{2})", v.Local.sEmpID, v.Caller.User, v.Local.fDirectHours, v.Local.sSQL)
+		f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+		
+		'productivity
+		f.Intrinsic.String.Build("insert into GCG_6941_PROD (EMPID,GSUSER,TYPE,HOURS) values('{0}','{1}','DIRECT WORK HRS',{2})", v.Local.sEmpID, v.Caller.User, v.Local.fDirectHours, v.Local.sSQL)
+		f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+		f.Intrinsic.String.Build("insert into GCG_6941_PROD (EMPID,GSUSER,TYPE,HOURS) values('{0}','{1}','INDIRECT WORK HRS',{2})", v.Local.sEmpID, v.Caller.User, v.Local.fIndirectHours, v.Local.sSQL)
+		f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+		'-----------------------------------------------------
+		
+		f.ODBC.Connection!Con.Close
+		'print report
+		f.Global.BI.GetIDFromName("GCG_6941_EMP_PERF_PROD.rpt", v.Local.sReportID)
+		
+'		v.Local.sFilePath.Set("C:\Users\nle\Desktop\My Projects\6941 - E & M Copper Products\Report Output")
+		v.Local.sFilePath.Set("\\DATASERVER\DataBase\Human Resources\Employee Performance Reports")
+		
+		
+		'move to custom folder
+		'-----------------------------------------------------
+		f.Intrinsic.String.Build("{0}\{1}\{2}",v.Caller.GlobalDir, "CUSTOM\6941\", v.Caller.CompanyCode, v.Local.sFilePath)
+		f.Intrinsic.File.DirExists(v.Local.sFilePath, v.Local.bFilePathExist)
+		f.Intrinsic.Control.If(v.Local.bFilePathExist.Not)
+			f.Intrinsic.File.CreateDir(v.Local.sFilePath)
+		f.Intrinsic.Control.EndIf
+		
+		f.Intrinsic.String.Build("{0}\{1}{2}_{3}_{4}.pdf", v.Local.sFilePath, v.Local.sEmpID, v.Local.sEmpName, v.Local.sDateFrom, v.Local.sDateTo, v.Local.sFile)
+		'-----------------------------------------------------
+		
+		F.Global.BI.GetRunID(V.Local.iBIRunID)
+		F.Global.BI.StartLogging(V.Local.iBIRunID,v.Local.sReportID,0,"",V.Local.iLogID)
+		f.Global.BI.StopLogging(v.Local.iLogID)
+'		f.Global.BI.PrintReport(v.Local.sReportID, 0, "", "", "", True)
+		F.Global.BI.RunReportPreProcessor(V.Local.iBIRunID,V.Local.iLogID,"","","",4,True,"",-1,"",0,V.Local.sFile,"",V.Local.iRet)
+		
+
+f.Intrinsic.Control.Catch
+	f.Intrinsic.Control.CallSub(catching)
+f.Intrinsic.Control.EndTry
+Program.Sub.GenerateReportForAnEmployee.End
+
+
+
+Program.Sub.PrintTotalReport.Start
+f.Intrinsic.Control.Try
+
+	v.Local.iCount.Declare(Long)
+	v.Local.sEmpID.Declare(String)
+	v.Local.sEmpName.Declare(String)
+	v.Local.sDateFrom.Declare(String)
+	v.Local.sDateTo.Declare(String)
+	v.Local.sSQL.Declare(String)
+	v.Local.sRet.Declare(String)
+	
+	v.Local.fActualHours.Declare(Float)
+	v.Local.fEstimateHours.Declare(Float)
+	v.Local.fIndirectHours.Declare(Float)
+	v.Local.fDirectHours.Declare(Float)
+	v.Local.fPerformance.Declare(Float)
+	v.Local.fNCR_01.Declare(Long)
+	v.Local.fNCR_10.Declare(Long)
+	v.Local.fNCR_07.Declare(Long)
+	v.Local.fNCR_09.Declare(Long)
+	v.Local.fNCR_01_Qty.Declare(Long)
+	v.Local.fNCR_07_Qty.Declare(Long)
+	v.Local.fNCR_09_Qty.Declare(Long)
+	v.Local.fNCR_10_Qty.Declare(Long)
+	
+	v.Local.sFilePath.Declare(String)
+	v.Local.sFile.Declare(String)
+	V.Local.iBIRunID.Declare(Long)
+	V.Local.iLogID.Declare(Long)
+	v.Local.sReportID.Declare(String)
+	v.Local.bFilePathExist.Declare(Boolean)
+	V.Local.iRet.Declare(Long)
+	
+	v.Local.sDateFromYYMMDD.Declare(String)
+	v.Local.sDateToYYMMDD.Declare(String)
+	
+	v.Local.sBreakdown.Declare(String)
+		'find total worked hours
+		'	total hours work on direct
+		'	total hours work on indirect
+		'	total hours estimated
+		'	breakdowns on indirect
+		'	scrap counts per scrap code
+	f.Intrinsic.String.Format(v.Screen.FormMain!dtpFrom.Value, "YYYY-MM-DD", v.Local.sDateFrom)
+	f.Intrinsic.String.Format(V.Screen.FormMain!dtpTo.Value,"YYYY-MM-DD", V.Local.sDateTo)
+	f.Intrinsic.String.Format(v.Screen.FormMain!dtpFrom.Value, "YYMMDD", v.Local.sDateFromYYMMDD)
+	f.Intrinsic.String.Format(V.Screen.FormMain!dtpTo.Value,"YYMMDD", v.Local.sDateToYYMMDD)
+	
+'	v.Local.sEmpID.Set(v.Args.argEMPID)
+	v.Local.sEmpID.Set("ALL EMPLOYEES")
+	
+	f.ODBC.Connection!Con.OpenCompanyConnection(999)
+		'Delete previous records by GSUSER
+		'-----------------------------------------------------
+		f.Intrinsic.String.Build("delete from GCG_6941_BREAKDOWN where RTRIM(GSUSER)='{0}'", v.Caller.User, v.Local.sSQL)
+		f.Intrinsic.String.Build("delete from GCG_6941_BREAKDOWN", v.Caller.User, v.Local.sSQL)
+		f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+		f.Intrinsic.String.Build("delete from GCG_6941_BI where RTRIM(GSUSER)='{0}'", v.Caller.User, v.Local.sSQL)
+		f.Intrinsic.String.Build("delete from GCG_6941_BI", v.Caller.User, v.Local.sSQL)
+		f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+		f.Intrinsic.String.Build("delete from GCG_6941_PERFORM where RTRIM(GSUSER)='{0}'", v.Caller.User, v.Local.sSQL) 
+		f.Intrinsic.String.Build("delete from GCG_6941_PERFORM", v.Caller.User, v.Local.sSQL) 
+		f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+		f.Intrinsic.String.Build("delete from GCG_6941_PROD where RTRIM(GSUSER)='{0}'", v.Caller.User, v.Local.sSQL)
+		f.Intrinsic.String.Build("delete from GCG_6941_PROD", v.Caller.User, v.Local.sSQL)
+		f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+		'-----------------------------------------------------
+		
+		'get numbers
+		'-----------------------------------------------------
+		'Total Actual
+		f.Intrinsic.String.Build("select SUM(HOURS_WORKED) from JOB_DETAIL where DATE_SEQUENCE >= '{1}' and DATE_SEQUENCE <= '{2}' and EMPL <> '00000' and EMPL is not null", v.Local.sEmpID, v.Local.sDateFromYYMMDD, v.Local.sDateToYYMMDD, v.Local.sSQL)
+		f.ODBC.Connection!Con.ExecuteAndReturn(v.Local.sSQL, v.Local.sRet)
+		f.Intrinsic.Control.If(v.Ambient.ExecuteAndReturnEOF,=,True)
+			v.Local.fActualHours.Set(0)
+		f.Intrinsic.Control.Else
+			v.Local.fActualHours.Set(v.Local.sRet)
+		f.Intrinsic.Control.EndIf
+		
+		'Total Estimate
+		'	from V_JOB_OPERATIONS
+		f.Intrinsic.String.Build("select SUM(HOURS_ESTIMATED) from JOB_OPERATIONS where RTRIM(JOB)+'-'+RTRIM(SUFFIX)+'-'+RTRIM(SEQ) in (select RTRIM(A.JOB)+'-'+RTRIM(A.SUFFIX)+'-'+RTRIM(A.SEQ) from JOB_DETAIL A where A.DATE_SEQUENCE >= '{1}' and A.DATE_SEQUENCE <= '{2}' and EMPL <> '00000' and EMPL is not null)", v.Local.sEmpID, v.Local.sDateFromYYMMDD, v.Local.sDateToYYMMDD, v.Local.sSQL)
+		
+		f.Intrinsic.String.Build("select SUM(AMT_STANDARD) from JOB_DETAIL where DATE_SEQUENCE >= '{1}' and DATE_SEQUENCE <= '{2}'", v.Local.sEmpID, v.Local.sDateFromYYMMDD, v.Local.sDateToYYMMDD, v.Local.sSQL)
+		
+		f.ODBC.Connection!Con.ExecuteAndReturn(v.Local.sSQL, v.Local.sRet)
+		f.Intrinsic.Control.If(v.Ambient.ExecuteAndReturnEOF,=,True)
+			v.Local.fEstimateHours.Set(0)
+		f.Intrinsic.Control.Else
+			v.Local.fEstimateHours.Set(v.Local.sRet)
+		f.Intrinsic.Control.EndIf
+		
+		'Direct
+		f.Intrinsic.String.Build("select SUM(HOURS_WORKED) from JOB_DETAIL where DATE_SEQUENCE >= '{1}' and DATE_SEQUENCE <= '{2}' and LEFT(JOB,4) not in ('ZBAL','ZIND') and EMPL <> '00000' and EMPL is not null", v.Local.sEmpID, v.Local.sDateFromYYMMDD, v.Local.sDateToYYMMDD, v.Local.sSQL)
+		f.ODBC.Connection!Con.ExecuteAndReturn(v.Local.sSQL, v.Local.sRet)
+		f.Intrinsic.Control.If(v.Ambient.ExecuteAndReturnEOF,=,True)
+			v.Local.fDirectHours.Set(0)
+		f.Intrinsic.Control.Else
+			v.Local.fDirectHours.Set(v.Local.sRet)
+		f.Intrinsic.Control.EndIf
+		
+		'Indirect
+		f.Intrinsic.String.Build("select SUM(HOURS_WORKED) from JOB_DETAIL where DATE_SEQUENCE >= '{1}' and DATE_SEQUENCE <= '{2}' and LEFT(JOB,4) in ('ZBAL','ZIND') and EMPL <> '00000' and EMPL is not null", v.Local.sEmpID, v.Local.sDateFromYYMMDD, v.Local.sDateToYYMMDD, v.Local.sSQL)
+		f.ODBC.Connection!Con.ExecuteAndReturn(v.Local.sSQL, v.Local.sRet)
+		f.Intrinsic.Control.If(v.Ambient.ExecuteAndReturnEOF,=,True)
+			v.Local.fIndirectHours.Set(0)
+		f.Intrinsic.Control.Else
+			v.Local.fIndirectHours.Set(v.Local.sRet)
+		f.Intrinsic.Control.EndIf
+		
+		'breakdown on INDIRECT
+		'	runs when INDIRECT HOURS > 0
+		'		find and insert info into custom table GCG_6941_BREAKDOWN
+		f.Intrinsic.Control.If(v.Local.fIndirectHours,=,0)
+			'No Indirect
+			
+		f.Intrinsic.Control.Else
+'			f.Intrinsic.String.Build("select RTRIM(B.DESCRIPTION) BREAKDOWN, SUM(A.HOURS_WORKED) HOURS from JOB_DETAIL A left join JOB_OPERATIONS B on A.JOB+A.SUFFIX+A.SEQ=B.JOB+B.SUFFIX+B.SEQ where LEFT(A.JOB,4) in ('ZBAL','ZIND') and A.DATE_SEQUENCE >= '{1}' and A.DATE_SEQUENCE <= '{2}'  and EMPL <> '00000' and EMPL is not null group by BREAKDOWN", v.Local.sEmpID, v.Local.sDateFromYYMMDD, v.Local.sDateToYYMMDD, v.Local.sSQL)
+'			f.Intrinsic.Control.If(v.DataTable.dtBreakdown.Exists)
+'				f.Data.DataTable.Close("dtBreakdown")
+'			f.Intrinsic.Control.EndIf
+'			f.Data.DataTable.CreateFromSQL("dtBreakdown", "con", v.Local.sSQL, True)
+			
+			f.Intrinsic.String.Build("select EMPL, SUM(HOURS_WORKED) HOURS, JOB+'-'+SUFFIX+'-'+SEQ JSQ, '' BREAKDOWN from JOB_DETAIL where LEFT(JOB,4) in ('ZBAL','ZIND') and DATE_SEQUENCE >= '{1}' and DATE_SEQUENCE <= '{2}' group by BREAKDOWN,EMPL, JSQ", v.Local.sEmpID, v.Local.sDateFromYYMMDD, v.Local.sDateToYYMMDD, v.Local.sSQL)
+			f.Intrinsic.Control.If(v.DataTable.dtBreakdown.Exists)
+				f.Data.DataTable.Close("dtBreakdown")
+			f.Intrinsic.Control.EndIf
+			f.Data.DataTable.CreateFromSQL("dtBreakdown", "con", v.Local.sSQL, True)
+			
+			'create dict and fill
+			f.Intrinsic.String.Build("select JOB+'-'+SUFFIX+'-'+SEQ JSQ, DESCRIPTION from JOB_OPERATIONS where JSQ in (select JOB+'-'+SUFFIX+'-'+SEQ JSQ from JOB_DETAIL where LEFT(JOB,4) in ('ZBAL','ZIND') and DATE_SEQUENCE >= '{1}' and DATE_SEQUENCE <= '{2}') group by JSQ, DESCRIPTION", v.Local.sEmpID, v.Local.sDateFromYYMMDD, v.Local.sDateToYYMMDD, v.Local.sSQL)
+			f.Data.Dictionary.CreateFromSQL("dictBD", "con", v.Local.sSQL)
+			f.Data.Dictionary.SetDefaultReturn("dictBD", "")
+			f.Data.DataTable.FillFromDictionary("dtBreakdown", "dictBD", "JSQ", "BREAKDOWN")
+			f.Data.Dictionary.Close("dictBD")
+			
+			f.Intrinsic.Control.If(v.DataTable.dtBreakdown.RowCount,>,0)
+				f.Intrinsic.Control.For(v.Local.iCount,0,v.DataTable.dtBreakdown.RowCount--,1)
+					v.Local.sBreakdown.Set(v.DataTable.dtBreakdown(v.Local.iCount).BREAKDOWN!FieldValTrim)
+					f.Intrinsic.String.Build("insert into GCG_6941_BREAKDOWN (EMPID,BREAKDOWN,HOURS,GSUSER) values('{0}','{1}',{2},'{3}')", v.Local.sEmpID, v.Local.sBreakdown.PSQLFriendly, v.DataTable.dtBreakdown(v.Local.iCount).HOURS!FieldVal, v.Caller.User, v.Local.sSQL)
+					f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+				f.Intrinsic.Control.Next(v.Local.iCount)
+			f.Intrinsic.Control.EndIf
+		
+		f.Intrinsic.Control.EndIf
+		
+		
+		'	scrap counts per scrap code
+		'	count scrap occurence by scrap code by employee
+		'-----------------------------------------------------
+		f.Intrinsic.String.Build("select count(1) OCCURENCE, SUM(QTY_REJECTED) QTY, RTRIM(SCRAP_CODE) SCRAP_CODE from V_QUALITY where RTRIM(SCRAP_CODE) in ('1', '7', '9', '10')  and DATE_ENTERED >= '{1}' and DATE_ENTERED <= '{2}' group by SCRAP_CODE", v.Local.sEmpID, v.Local.sDateFrom, v.Local.sDateTo, v.Local.sSQL)
+		f.Intrinsic.Control.If(v.DataTable.dtScrap.Exists)
+			f.Data.DataTable.Close("dtScrap")
+		f.Intrinsic.Control.EndIf
+		f.Data.DataTable.CreateFromSQL("dtScrap", "con", v.Local.sSQL, True)
+		f.Intrinsic.Control.If(v.DataTable.dtScrap.RowCount,=,0)
+			'no scrap
+		f.Intrinsic.Control.Else
+			'loop to get data into vars
+			f.Intrinsic.Control.For(v.Local.iCount, 0, v.DataTable.dtScrap.RowCount--,1)
+				f.Intrinsic.Control.SelectCase(v.DataTable.dtScrap(v.Local.iCount).SCRAP_CODE!FieldValTrim)
+					f.Intrinsic.Control.Case("1")
+						v.Local.fNCR_01.Set(v.DataTable.dtScrap(v.Local.iCount).OCCURENCE!FieldVal)
+						v.Local.fNCR_01_Qty.Set(v.DataTable.dtScrap(v.Local.iCount).QTY!FieldVal)
+					f.Intrinsic.Control.Case("7")
+						v.Local.fNCR_07.Set(v.DataTable.dtScrap(v.Local.iCount).OCCURENCE!FieldVal)
+						v.Local.fNCR_07_Qty.Set(v.DataTable.dtScrap(v.Local.iCount).QTY!FieldVal)
+					f.Intrinsic.Control.Case("9")
+						v.Local.fNCR_09.Set(v.DataTable.dtScrap(v.Local.iCount).OCCURENCE!FieldVal)
+						v.Local.fNCR_09_Qty.Set(v.DataTable.dtScrap(v.Local.iCount).QTY!FieldVal)
+					f.Intrinsic.Control.Case("10")
+						v.Local.fNCR_10.Set(v.DataTable.dtScrap(v.Local.iCount).OCCURENCE!FieldVal)
+						v.Local.fNCR_10_Qty.Set(v.DataTable.dtScrap(v.Local.iCount).QTY!FieldVal)
+				f.Intrinsic.Control.EndSelect
+			f.Intrinsic.Control.Next(v.Local.iCount)
+		f.Intrinsic.Control.EndIf
+		'-----------------------------------------------------
+		
+		
+		'EMP NAME
+'		f.Intrinsic.String.Build("select top 1 RTRIM(NAME) from V_EMPLOYEE_MSTR where RTRIM(EMPLOYEE)='{0}'", v.Local.sEmpID.PSQLFriendly, v.Local.sSQL)
+'		f.ODBC.Connection!Con.ExecuteAndReturn(v.Local.sSQL, v.Local.sEmpName)
+		v.Local.sEmpName.Set("PLANT TOTAL")
+		
+		'calculate
+		'-----------------------------------------------------
+		f.Intrinsic.Control.If(v.Local.fDirectHours,>,0)
+			f.Intrinsic.Math.Div(v.Local.fEstimateHours,v.Local.fDirectHours, v.Local.fPerformance)
+			f.Intrinsic.Math.Mult(v.Local.fPerformance,100, v.Local.fPerformance)
+		f.Intrinsic.Control.Else
+			v.Local.fPerformance.Set(0)
+		f.Intrinsic.Control.EndIf
+		'-----------------------------------------------------
+		
+		
+		
+		'write to BI tables
+		'-----------------------------------------------------
+		f.Intrinsic.String.Build("insert into GCG_6941_BI (EMPID,GSUSER,EST_ACTUAL,HOUR_TOTAL,HOUR_DIRECT,HOUR_INDIRECT,NCR_07,NCR_09,NCR_01,NCR_10,DATE_FROM,DATE_TO,EMP_NAME,NCR_07_QTY,NCR_09_QTY,NCR_01_QTY,NCR_10_QTY) values('{0}','{1}',{2},{3},{4},{5},{6},{7},{8},{9},'{10}','{11}','{12}','{13}','{14}','{15}','{16}')", v.Local.sEmpID, v.Caller.User, v.Local.fPerformance, v.Local.fActualHours,v.Local.fDirectHours, v.Local.fIndirectHours, v.Local.fNCR_07, v.Local.fNCR_09, v.Local.fNCR_01, v.Local.fNCR_10, v.Local.sDateFrom, v.Local.sDateTo, v.Local.sEmpName, v.Local.fNCR_07_Qty, v.Local.fNCR_09_Qty, v.Local.fNCR_01_Qty, v.Local.fNCR_10_Qty, v.Local.sSQL)
+		f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+		
+		'performance
+		f.Intrinsic.String.Build("insert into GCG_6941_PERFORM (EMPID,GSUSER,TYPE,PERCENT) values('{0}','{1}','ESTIMATED HRS',{2})", v.Local.sEmpID, v.Caller.User, v.Local.fEstimateHours, v.Local.sSQL)
+		f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+		f.Intrinsic.String.Build("insert into GCG_6941_PERFORM (EMPID,GSUSER,TYPE,PERCENT) values('{0}','{1}','ACTUAL HRS',{2})", v.Local.sEmpID, v.Caller.User, v.Local.fDirectHours, v.Local.sSQL)
+		f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+		
+		'productivity
+		f.Intrinsic.String.Build("insert into GCG_6941_PROD (EMPID,GSUSER,TYPE,HOURS) values('{0}','{1}','DIRECT WORK HRS',{2})", v.Local.sEmpID, v.Caller.User, v.Local.fDirectHours, v.Local.sSQL)
+		f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+		f.Intrinsic.String.Build("insert into GCG_6941_PROD (EMPID,GSUSER,TYPE,HOURS) values('{0}','{1}','INDIRECT WORK HRS',{2})", v.Local.sEmpID, v.Caller.User, v.Local.fIndirectHours, v.Local.sSQL)
+		f.ODBC.Connection!Con.Execute(v.Local.sSQL)
+		'-----------------------------------------------------
+		
+		f.ODBC.Connection!Con.Close
+		'print report
+		f.Global.BI.GetIDFromName("GCG_6941_EMP_PERF_PROD.rpt", v.Local.sReportID)
+		
+''		v.Local.sFilePath.Set("C:\Users\nle\Desktop\My Projects\6941 - E & M Copper Products\Report Output")
+'		v.Local.sFilePath.Set("\\DATASERVER\DataBase\Human Resources\Employee Performance Reports")
+'		
+'		'\\DATASERVER\DataBase\Human Resources\Employee Performance Reports
+'		f.Intrinsic.String.Build("{0}\{1}{2}_{3}_{4}.pdf", v.Local.sFilePath, v.Local.sEmpID, v.Local.sEmpName, v.Local.sDateFrom, v.Local.sDateTo, v.Local.sFile)
+		
+		
+		'move to custom folder
+		'-----------------------------------------------------
+		f.Intrinsic.String.Build("{0}\{1}\{2}",v.Caller.GlobalDir, "CUSTOM\6941\", v.Caller.CompanyCode, v.Local.sFilePath)
+		f.Intrinsic.File.DirExists(v.Local.sFilePath, v.Local.bFilePathExist)
+		f.Intrinsic.Control.If(v.Local.bFilePathExist.Not)
+			f.Intrinsic.File.CreateDir(v.Local.sFilePath)
+		f.Intrinsic.Control.EndIf
+		
+		f.Intrinsic.String.Build("{0}\{1}{2}_{3}_{4}.pdf", v.Local.sFilePath, v.Local.sEmpID, v.Local.sEmpName, v.Local.sDateFrom, v.Local.sDateTo, v.Local.sFile)
+		'-----------------------------------------------------
+		
+		
+		F.Global.BI.GetRunID(V.Local.iBIRunID)
+		F.Global.BI.StartLogging(V.Local.iBIRunID,v.Local.sReportID,0,"",V.Local.iLogID)
+		f.Global.BI.StopLogging(v.Local.iLogID)
+'		f.Global.BI.PrintReport(v.Local.sReportID, 0, "", "", "", True)
+		F.Global.BI.RunReportPreProcessor(V.Local.iBIRunID,V.Local.iLogID,"","","",4,True,"",-1,"",0,V.Local.sFile,"",V.Local.iRet)
+		
+
+f.Intrinsic.Control.Catch
+	f.Intrinsic.Control.CallSub(catching)
+f.Intrinsic.Control.EndTry
+Program.Sub.PrintTotalReport.End
+
+
+'chk All Employees
+'set value to global var + enable/disable browse button
+Program.Sub.chkAllEmp_MouseUp.Start
+f.Intrinsic.Control.Try
+	v.Local.bCheck.Declare(Boolean)
+	v.Local.bCheck.Set(v.Screen.FormMain!chkAllEmp.Value)
+	v.Global.bAllEmp.Set(v.Local.bCheck)
+	
+	f.Intrinsic.Control.If(v.Local.bCheck)
+		gui.FormMain.cmdSelectEmployee.Enabled(False)
+	f.Intrinsic.Control.Else
+		gui.FormMain.cmdSelectEmployee.Enabled(True)
+	f.Intrinsic.Control.EndIf
+	
+f.Intrinsic.Control.Catch
+	f.Intrinsic.Control.CallSub(catching)
+f.Intrinsic.Control.EndTry
+Program.Sub.chkAllEmp_MouseUp.End
+
+'chk Print Total
+'set value to global var
+Program.Sub.chkPrintTotal_MouseUp.Start
+f.Intrinsic.Control.Try
+	v.Local.bCheck.Declare(Boolean)
+	v.Local.bCheck.Set(v.Screen.FormMain!chkPrintTotal.Value)
+	
+	v.Global.bPrintTotal.Set(v.Local.bCheck)
+'	f.Intrinsic.UI.Msgbox(v.Global.bPrintTotal)
+	
+f.Intrinsic.Control.Catch
+	f.Intrinsic.Control.CallSub(catching)
+f.Intrinsic.Control.EndTry
+Program.Sub.chkPrintTotal_MouseUp.End
+
+
+'Browse Emp
+'get list of emp 
+'	show emp form
+Program.Sub.cmdSelectEmployee_Click.Start
+f.Intrinsic.Control.Try
+	'if dtEmp does not exist => get list of Emp and show in form
+	f.Intrinsic.Control.If(v.DataTable.dtEmp.Exists,=,False)
+		f.ODBC.Connection!Con.OpenCompanyConnection(999)
+		f.Data.DataTable.CreateFromSQL("dtEmp", "con", "select RTRIM(EMPLOYEE) ID, RTRIM(NAME) NAME from EMPLOYEE_MSTR order by EMPLOYEE", True)
+'		f.Data.DataTable.CreateFromSQL("dtEmp", "con", "select RTRIM(EMPLOYEE) ID, RTRIM(NAME) NAME from EMPLOYEE_MSTR order by EMPLOYEE", True)
+		f.Data.DataTable.AddColumn("dtEmp", "SELECT", "Boolean", False)
+		f.ODBC.Connection!Con.Close
+		
+		f.Intrinsic.Control.CallSub(FormatGrid_Emp)
+		
+	f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.If(v.Global.bFB)
+		gui.FormEmp..Show
+		v.Global.bFB.Set(False)
+	f.Intrinsic.Control.Else
+		gui.FormEmp..Visible(True)
+	f.Intrinsic.Control.EndIf
+	
+	gui.FormMain..Enabled(False)
+	
+f.Intrinsic.Control.Catch
+	f.Intrinsic.Control.CallSub(catching)
+f.Intrinsic.Control.EndTry
+Program.Sub.cmdSelectEmployee_Click.End
+
+'format grid Emp
+Program.Sub.FormatGrid_Emp.Start
+f.Intrinsic.Control.Try
+	gui.FormEmp.GsgcEmp.AddGridviewFromDatatable("gvEmp", "dtEmp")
+	
+	gui.FormEmp.GsgcEmp.SetGridviewProperty("gvEmp", v.Enum.GridViewPropertyNames!EnableAppearanceOddRow,True)
+	gui.FormEmp.GsgcEmp.SetGridviewProperty("gvEmp", v.Enum.GridViewPropertyNames!Editable,False)
+	gui.FormEmp.GsgcEmp.SetGridviewProperty("gvEmp", v.Enum.GridViewPropertyNames!ReadOnly,True)
+	gui.FormEmp.GsgcEmp.SetGridviewProperty("gvEmp", v.Enum.GridViewPropertyNames!ColumnAutoWidth,True)
+	gui.FormEmp.GsgcEmp.SetGridviewProperty("gvEmp", v.Enum.GridViewPropertyNames!ShowAutoFilterRow,True)
+	
+	
+	gui.FormEmp.GsgcEmp.SetColumnProperty("gvEmp", "ID", v.Enum.ColumnPropertyNames!HeaderFontBold,True)
+	gui.FormEmp.GsgcEmp.SetColumnProperty("gvEmp", "NAME", v.Enum.ColumnPropertyNames!HeaderFontBold,True)
+	gui.FormEmp.GsgcEmp.SetColumnProperty("gvEmp", "SELECT", v.Enum.ColumnPropertyNames!HeaderFontBold,True)
+	
+	gui.FormEmp.GsgcEmp.SetColumnProperty("gvEmp", "ID", v.Enum.ColumnPropertyNames!HeaderHAlignment,"center")
+	gui.FormEmp.GsgcEmp.SetColumnProperty("gvEmp", "NAME", v.Enum.ColumnPropertyNames!HeaderHAlignment,"center")
+	gui.FormEmp.GsgcEmp.SetColumnProperty("gvEmp", "SELECT", v.Enum.ColumnPropertyNames!HeaderHAlignment,"center")
+	
+	gui.FormEmp.GsgcEmp.SetColumnProperty("gvEmp", "ID", v.Enum.ColumnPropertyNames!CellHAlignment,"center")
+	gui.FormEmp.GsgcEmp.SetColumnProperty("gvEmp", "SELECT", v.Enum.ColumnPropertyNames!CellHAlignment,"center")
+	
+	
+	gui.FormEmp.GsgcEmp.SetColumnProperty("gvEmp", "ID", v.Enum.ColumnPropertyNames!MinWidth,80)
+	gui.FormEmp.GsgcEmp.SetColumnProperty("gvEmp", "NAME", v.Enum.ColumnPropertyNames!MinWidth,120)
+	gui.FormEmp.GsgcEmp.SetColumnProperty("gvEmp", "SELECT", v.Enum.ColumnPropertyNames!MinWidth,60)
+	
+	gui.FormEmp.GsgcEmp.MainView("gvEmp")
+f.Intrinsic.Control.Catch
+	f.Intrinsic.Control.CallSub(catching)
+f.Intrinsic.Control.EndTry
+Program.Sub.FormatGrid_Emp.End
+
+
+Program.Sub.placeholder.Start
+f.Intrinsic.Control.Try
+
+f.Intrinsic.Control.Catch
+	f.Intrinsic.Control.CallSub(catching)
+f.Intrinsic.Control.EndTry
+Program.Sub.placeholder.End
+
+'CATCH
+Program.Sub.Catching.Start
+f.Intrinsic.Control.If(v.ODBC.con.Exists)
+	f.ODBC.Connection!Con.Close
+f.Intrinsic.Control.EndIf
+
+f.Intrinsic.UI.Msgbox(v.Ambient.ErrorDescription)
+
+f.Intrinsic.Control.CallSub(FormMain_UnLoad)
+
+Program.Sub.Catching.End
+
+'EMP UNLOAD
+Program.Sub.FormEmp_UnLoad.Start
+gui.FormEmp..Visible(False)
+gui.FormMain..Enabled(True)
+
+'toggle on top
+gui.FormMain..AlwaysOnTop(True)
+gui.FormMain..AlwaysOnTop(False)
+
+Program.Sub.FormEmp_UnLoad.End
+
+Program.Sub.cmdEmp_OK_Click.Start
+f.Intrinsic.Control.CallSub(FormEmp_UnLoad)
+Program.Sub.cmdEmp_OK_Click.End
+
+'select emp
+Program.Sub.GsgcEmp_RowCellClick.Start
+f.Intrinsic.Control.Try
+	v.Local.bSelect.Declare(Boolean)
+	v.Local.bSelect.Set(v.DataTable.dtEmp(v.Args.RowIndex).SELECT!FieldVal)
+	f.Intrinsic.Control.If(v.Args.Column,=,"SELECT")
+		f.Data.DataTable.SetValue("dtEmp", v.Args.RowIndex, "SELECT", v.Local.bSelect.Not)
+	f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.Catch
+	f.Intrinsic.Control.CallSub(catching)
+f.Intrinsic.Control.EndTry
+Program.Sub.GsgcEmp_RowCellClick.End
+
+Program.Sub.Comments.Start
+${$5$}$20.1.8474.24170$}$1
+${$6$}$nle$}$20230823100328254$}$kjzCRYkA6UEoRnCwndYnRSzTsHn7OomqsyGt/jshBq3+7LB5PtnikdEqnUTUw1x/
+Program.Sub.Comments.End
